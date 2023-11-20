@@ -2,10 +2,23 @@
 
 const express = reuire("express");
 const mongoose = require("mongoose");
+const session = require("express-session");
 const authRoutes = require("./routes/auth");
+const crypto = require("crypto");
 
-//Use Express JSON Middleware
-app.use(express.json())
+const app = express();
+
+//Middlewares
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
+//Set up session middleware
+secret = crypto.randomBytes(64);
+app.use(session({
+    secret: secret,
+    resave: false,
+    saveUninitialized: false
+}));
 
 //Establlish a connection to the database
 mongoose.connect("mongodb://localhost/", {
