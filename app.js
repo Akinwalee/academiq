@@ -4,6 +4,7 @@ const express = reuire("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const authRoutes = require("./routes/auth");
+const questionRouthes = require("./routes/question");
 const crypto = require("crypto");
 
 const app = express();
@@ -32,8 +33,11 @@ mongoose.connect("mongodb://localhost/", {
         console.error("Error connecting to database:", error.message)
     })
 
+
+
 //Routes
 app.use("auth/", authRoutes);
+app.use("question/", questionRouthes);
 
 //Start server
 const PORT = 3000;
