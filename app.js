@@ -1,6 +1,6 @@
 //Main Entry Point
 
-const express = reuire("express");
+const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const authRoutes = require("./routes/auth");
@@ -34,10 +34,13 @@ mongoose.connect("mongodb://localhost/", {
     })
 
 
-
 //Routes
 app.use("auth/", authRoutes);
 app.use("question/", questionRouthes);
+
+app.get("/", (req, res) => {
+    res.send().json({message: "Hello World!"})
+})
 
 //Start server
 const PORT = 3000;
